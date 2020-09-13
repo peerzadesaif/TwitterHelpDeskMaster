@@ -1,0 +1,10 @@
+{
+    "name": "Twitter Help Desk",
+    "description": "This is an simple web react app for Twiiter Help Desk.",
+    "keywords": [
+        "node",
+        "express",
+        "reactjs",
+        "materialui"
+    ]
+}
