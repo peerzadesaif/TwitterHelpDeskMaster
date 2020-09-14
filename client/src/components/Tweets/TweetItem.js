@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function TweetItem(props) {
+function TweetItem(props) {
   let { tweet, handleReply, handleSelected, index } = props;
   console.log('props :>> ', props);
   const classes = useStyles();
@@ -56,3 +56,5 @@ export default function TweetItem(props) {
     </>
   );
 }
+
+export default TweetItem

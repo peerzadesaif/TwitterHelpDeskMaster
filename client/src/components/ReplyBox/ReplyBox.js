@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Divider, TextField } from "@material-ui/core";
 
-export default function ReplyBox(props) {
+function ReplyBox(props) {
   let { reply, handleInputChange, postReplies, replyButtonDisabled } = props;
   return (
     <React.Fragment>
@@ -35,3 +35,5 @@ export default function ReplyBox(props) {
 
   );
 }
+
+export default ReplyBox

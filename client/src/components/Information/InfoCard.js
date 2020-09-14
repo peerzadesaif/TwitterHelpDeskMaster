@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     height: theme.spacing(7)
   }
 }));
-export default function InfoCard(props) {
+function InfoCard(props) {
   let { selectedTweet } = props;
   const isRowBased = UseMediaQuery("(min-width: 1000px)");
   const classes = useStyles();
@@ -99,3 +99,6 @@ const styles = {
     alignItems: "center"
   })
 };
+
+
+export default InfoCard;

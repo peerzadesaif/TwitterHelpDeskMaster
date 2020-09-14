@@ -3,7 +3,7 @@ import { Paper, List } from "@material-ui/core";
 import { MentionsPlaceHolder } from "../PlaceHolders/PlaceHolders";
 import TweetItem from "./TweetItem";
 
-export default function TweetList(props) {
+function TweetList(props) {
   let { isLoading, tweets, selectedIndex, handleReply, handleSelected } = props;
 
 
@@ -39,3 +39,5 @@ export default function TweetList(props) {
     </Paper>
   );
 }
+
+export default TweetList;

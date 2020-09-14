@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function InfoColumn(props) {
+function InfoColumn(props) {
   const { selectedTweet } = props;
   const [expanded, setExpanded] = React.useState("panel1");
 
@@ -93,3 +93,6 @@ export default function InfoColumn(props) {
     </Paper>
   );
 }
+
+
+export default InfoColumn

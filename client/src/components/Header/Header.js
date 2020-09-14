@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Header(props) {
+function Header(props) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -41,3 +41,5 @@ export default function Header(props) {
     </div>
   );
 }
+
+export default Header

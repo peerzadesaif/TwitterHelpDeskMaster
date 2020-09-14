@@ -3,7 +3,7 @@ import { List, Paper } from "@material-ui/core";
 import { ChatPlaceholder } from "../PlaceHolders/PlaceHolders";
 import ChatItem from "./ChatItem";
 
-export default function ChatList(props) {
+function ChatList(props) {
   let { isLoading, selectedTweet, replies } = props;
   return (
     <Paper elevation={0} style={{ height: "60vh", overflow: "scroll" }}>
@@ -44,3 +44,5 @@ export default function ChatList(props) {
     </Paper>
   );
 }
+
+export default ChatList
