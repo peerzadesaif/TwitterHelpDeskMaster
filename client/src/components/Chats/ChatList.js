@@ -8,6 +8,7 @@ function ChatList(props) {
   return (
     <Paper elevation={0} style={{ height: "60vh", overflow: "scroll" }}>
       <List
+        id="auto-scroll-chat"
         style={{
           display: "flex",
           flex: 1,
@@ -32,7 +33,7 @@ function ChatList(props) {
           replies[selectedTweet.id] &&
           replies[selectedTweet.id].map((o, i) => (
             <ChatItem
-              key={o.id_str + '___' + i}
+              key={`${o.id_str}___${i}`}
               style={{
                 marginLeft: "35%",
                 backgroundColor: "#d8edb8"

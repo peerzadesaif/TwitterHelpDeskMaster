@@ -54,12 +54,14 @@ class DashBoard extends Component {
   };
 
   componentDidMount() {
+    this.scrollChat()
+
     this.setState({ isLoading: true });
     this.init();
   }
 
   getUniqueReplies = (replies) => {
-    let _replies = {}
+    let _replies = {};
     Object.keys(replies).map((x) => {
       _replies[x] = [...new Set(replies[x].map(x => x['id']))].map((id) => replies[x].find(a => a.id === id))
     })
@@ -172,7 +174,11 @@ class DashBoard extends Component {
     this.setState({
       selectedIndex: index,
       selectedTweet: tweet
+    }, () => {
+      this.scrollChat()
+
     });
+
   };
 
   handleReply = str => {
@@ -207,12 +213,21 @@ class DashBoard extends Component {
     }
     replies[query.selectedTweet.id].push(data);
 
-    replies = this.getUniqueReplies(replies);
+    let promises = Object.keys(replies).map((x) => {
+      replies[x] = [...new Set(replies[x].map(x => x['id']))].map((id) => replies[x].find(a => a.id === id))
+      return x
+    });
+    await Promise.all(promises)
+
+    // let _replies = this.getUniqueReplies(replies);
+    // console.log('object', _replies)
 
     this.setState({
       reply: "@" + query.selectedTweet.user.screen_name + " ",
       replies,
       replyButtonDisabled: false
+    }, () => {
+      this.scrollChat()
     });
   };
 
@@ -252,10 +267,15 @@ class DashBoard extends Component {
       icon_component: <PaymentIcon />
     },
     {
-      icon_name: 'home',
+      icon_name: 'home_one',
       icon_component: <HomeIcon />
     }
   ])
+
+  scrollChat = () => {
+    const messages = document.getElementById('auto-scroll-chat');
+    messages.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+  }
 
   render() {
     let {
@@ -269,13 +289,12 @@ class DashBoard extends Component {
     } = this.state;
     // process.env.NODE_ENV === 'development' ? tweets = helpers.TweetList : [];
     // console.log('tweets :>> ', tweets);
-
     return (
       <Grid container spacing={0} style={{ height: '130vh' }}>
         <Grid style={{ backgroundColor: '#f7f6f2', maxWidth: '5.5%' }} item xs={1}>
           <List style={{ marginTop: "8vh" }}>
             {this.getSideNavs().map((text, index) => (
-              <ListItem button key={text} style={{ padding: '28%', textAlign: 'center', marginTop: "20%", background: text.icon_name === 'forum' ? '#00000014' : 'transparent' }}>
+              <ListItem button key={text.icon_name} style={{ padding: '28%', textAlign: 'center', marginTop: "20%", background: text.icon_name === 'forum' ? '#00000014' : 'transparent' }}>
                 <ListItemIcon style={{ margin: '0 auto', minWidth: '28px' }}>
                   {/* {text.icon_component} */}
                   <Icon>{text.icon_name}</Icon>

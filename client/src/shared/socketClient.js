@@ -24,7 +24,6 @@ class SocketClient {
 
     this.connection.on("newTweets", () => {
       this.services.getTweets();
-      console.log("socket - newTweets");
     });
 
     this.connection.on("handshake", data => {
@@ -34,7 +33,6 @@ class SocketClient {
 
   authenticate = () => {
     const token = window.localStorage.getItem("rp_token");
-    console.log("socket - authenticating", token);
 
     this.connection.emit("authenticate", { token }, () => {
       console.log("socket - authenticated");
@@ -47,7 +45,6 @@ class SocketClient {
 }
 
 const createSocketClient = options => {
-  console.log("options", options);
   if (!socketClient) {
     socketClient = new SocketClient(options);
   }

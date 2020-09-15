@@ -70,7 +70,7 @@ function InfoColumn(props) {
                   const labelId = `checkbox-list-label-${value}`;
 
                   return (
-                    <ListItem key={value} role={undefined} dense button >
+                    <ListItem key={`${value}_checkbox`} role={undefined} dense button >
                       <ListItemIcon>
                         <Checkbox
                           edge="start"
