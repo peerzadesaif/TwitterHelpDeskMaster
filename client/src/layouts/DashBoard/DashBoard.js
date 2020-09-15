@@ -13,6 +13,8 @@ import ChatList from "../../components/Chats/ChatList";
 import InfoColumn from "../../components/Information/InfoColumn";
 import * as helpers from "../../helpers";
 
+import Icon from '@material-ui/core/Icon';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -20,6 +22,12 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+
+import HomeIcon from '@material-ui/icons/Home';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import ForumIcon from '@material-ui/icons/Forum';
+import PaymentIcon from '@material-ui/icons/Payment';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 
 class DashBoard extends Component {
   constructor(props) {
@@ -215,6 +223,39 @@ class DashBoard extends Component {
       this.props.history.push("/");
     }, 100);
   };
+  getSVGIcon = (props) => (
+    <SvgIcon {...props}>
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+    </SvgIcon>
+  )
+
+  getSideNavs = () => ([
+    {
+      icon_name: 'access_time',
+      icon_component: <AccessTimeIcon />,
+      // icon_svg: getSVGIcon(props)(props)=><HomeIcon />
+    },
+    {
+      icon_name: 'home',
+      icon_component: <HomeIcon />
+    },
+    {
+      icon_name: 'people_alt',
+      icon_component: <PeopleAltIcon />
+    },
+    {
+      icon_name: 'forum',
+      icon_component: <ForumIcon />
+    },
+    {
+      icon_name: 'payment',
+      icon_component: <PaymentIcon />
+    },
+    {
+      icon_name: 'home',
+      icon_component: <HomeIcon />
+    }
+  ])
 
   render() {
     let {
@@ -232,10 +273,13 @@ class DashBoard extends Component {
     return (
       <Grid container spacing={0} style={{ height: '130vh' }}>
         <Grid style={{ backgroundColor: '#f7f6f2', maxWidth: '5.5%' }} item xs={1}>
-          <List style={{ marginTop: "30vh" }}>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text} style={{ textAlign: 'center', marginTop: "20%" }}>
-                <ListItemIcon style={{ margin: '0 auto', minWidth: '28px' }}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+          <List style={{ marginTop: "8vh" }}>
+            {this.getSideNavs().map((text, index) => (
+              <ListItem button key={text} style={{ padding: '28%', textAlign: 'center', marginTop: "20%", background: text.icon_name === 'forum' ? '#00000014' : 'transparent' }}>
+                <ListItemIcon style={{ margin: '0 auto', minWidth: '28px' }}>
+                  {/* {text.icon_component} */}
+                  <Icon>{text.icon_name}</Icon>
+                </ListItemIcon>
                 {/* <ListItemText primary={text} /> */}
               </ListItem>
             ))}
